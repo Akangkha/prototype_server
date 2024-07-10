@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Color Palette Generator</title>
+  </head>
+  <body>
+    <h1>Color Palette Generator</h1>
+    <form id="paletteForm">
+      <label for="skin_color">Skin Color:</label>
+      <input
+        type="text"
+        id="skin_color"
+        name="skin_color"
+        value="#D6A77A"
+      /><br /><br />
+      <label for="cool_undertone">Cool Undertone:</label>
+      <input
+        type="checkbox"
+        id="cool_undertone"
+        name="cool_undertone"
+        checked
+      /><br /><br />
+      <button type="button" onclick="generatePalette()">
+        Generate Palette
+      </button>
+    </form>
+    <h2>Generated Color Palette:</h2>
+    <pre id="result"></pre>
+
+    <script>
+      async function generatePalette() {
+        const skinColor = document.getElementById("skin_color").value;
+        const coolUndertone = document.getElementById("cool_undertone").checked;
+
+        try {
+          const response = await fetch(
+            "http://127.0.0.1:5000/generate_palette",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                skin_color: skinColor,
+                cool_undertone: coolUndertone,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const result = await response.json();
+
+          // Check if the result has the expected JSON structure
+          if (result.primary && result.accent && result.neutral) {
+            document.getElementById("result").textContent = JSON.stringify(
+              result,
+              null,
+              2
+            );
+          } else {
+            throw new Error("Invalid response format");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

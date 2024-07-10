@@ -1,0 +1,36 @@
+# Ignore virtual environment directory
+myenv/
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore environment variable files
+.env
+
+# Ignore Flask instance folder
+instance/
+
+# Ignore IDE/editor configurations
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+*.vscode/
+
+# Ignore temporary files
+*.log
+*.tmp
+
+# Ignore MacOS Finder files
+.DS_Store
+
+# Ignore Windows thumbnail cache
+Thumbs.db
+
+# Ignore pipenv files
+Pipfile.lock
+
+# Ignore environment variables file
+.env
