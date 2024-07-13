@@ -1,17 +1,16 @@
 from flask import Flask, request, jsonify, render_template
 import google.generativeai as genai
-from flask_cors import CORS  # Import CORS
-import json  # Import json
+from flask_cors import CORS  
+import json 
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 gemini_api_key = os.getenv('GEMINI_API_KEY')
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)  
 
-# Configure Google Generative AI
+
 genai.configure(api_key=gemini_api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
@@ -59,10 +58,10 @@ def generate_palette():
 
     response = model.generate_content(prompt)
     
-    # Extract and parse JSON from the response text
+   
     try:
         color_palette = response.text.strip()
-        # Ensure it parses to a JSON object
+      
         palette_json = json.loads(color_palette)
     except json.JSONDecodeError:
         palette_json = {"error": "Failed to parse the response as JSON"}
@@ -70,4 +69,4 @@ def generate_palette():
     return jsonify(palette_json)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)  # Make sure to use the correct port
+    app.run(debug=True, port=5000)  

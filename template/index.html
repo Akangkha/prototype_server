@@ -54,7 +54,7 @@
 
           const result = await response.json();
 
-          // Check if the result has the expected JSON structure
+         
           if (result.primary && result.accent && result.neutral) {
             document.getElementById("result").textContent = JSON.stringify(
               result,
