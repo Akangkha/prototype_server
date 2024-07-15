@@ -42,7 +42,7 @@ This Flask server is a crucial component of the Trend-Centric Recommendation App
       "<color1>",
       "<color2>",
       "<color3>",
-      ...
+     
     ]
   }
   ```
