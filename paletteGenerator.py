@@ -24,38 +24,82 @@ def generate_palette():
     skin_color = data.get('skin_color', '#D6A77A')
     cool_undertone = data.get('cool_undertone', True)
 
-    prompt = f"""
-    I have a skin color with hex code {skin_color} and a cool undertone. Provide me with a personalized color palette that would look good on my skin. The output should be an array of hex codes, including primary colors, accent colors, and neutral colors suitable for clothing and accessories. Here are the requirements:
-    1. Primary Colors: Include 5 colors that will be the main part of the outfit.
-    2. Accent Colors: Include 5 colors that will add a pop of color to the outfit.
-    3. Neutral Colors: Include 5 colors that will complement the outfit.
-    Only output the result in the JSON format below:
-    {{
-        "primary": [
-            "#hexcode1",
-            "#hexcode2",
-            "#hexcode3",
-            "#hexcode4",
-            "#hexcode5"
-        ],
-        "accent": [
-            "#hexcode1",
-            "#hexcode2",
-            "#hexcode3",
-            "#hexcode4",
-            "#hexcode5"
-        ],
-        "neutral": [
-            "#hexcode1",
-            "#hexcode2",
-            "#hexcode3",
-            "#hexcode4",
-            "#hexcode5"
-        ]
-    }}
-    Do not include any other text or explanation, only the JSON.
-    """
-
+    prompt = """
+I have a skin color with hex code {skin_color} and a {'cool' if cool_undertone else 'warm'} undertone. Provide me with a personalized color palette that would look good on my skin. The output should be an array of hex codes and their corresponding color names, including primary colors, accent colors, and neutral colors suitable for clothing and accessories. Here are the requirements:
+1. Primary Colors: Include 5 different colors that will be the main part of the outfit, spanning different color families.
+2. Accent Colors: Include 5 different contrast colors that will add a pop of color to the outfit, spanning different color families.
+3. Neutral Colors: Include 5 colors that will complement the outfit, spanning different color families.
+Only output the result in the JSON format below:
+{
+    "primary": [
+        {
+            "hex": "#hexcode1",
+            "color": "colorname1"
+        },
+        {
+            "hex": "#hexcode2",
+            "color": "colorname2"
+        },
+        {
+            "hex": "#hexcode3",
+            "color": "colorname3"
+        },
+        {
+            "hex": "#hexcode4",
+            "color": "colorname4"
+        },
+        {
+            "hex": "#hexcode5",
+            "color": "colorname5"
+        }
+    ],
+    "accent": [
+        {
+            "hex": "#hexcode1",
+            "color": "colorname1"
+        },
+        {
+            "hex": "#hexcode2",
+            "color": "colorname2"
+        },
+        {
+            "hex": "#hexcode3",
+            "color": "colorname3"
+        },
+        {
+            "hex": "#hexcode4",
+            "color": "colorname4"
+        },
+        {
+            "hex": "#hexcode5",
+            "color": "colorname5"
+        }
+    ],
+    "neutral": [
+        {
+            "hex": "#hexcode1",
+            "color": "colorname1"
+        },
+        {
+            "hex": "#hexcode2",
+            "color": "colorname2"
+        },
+        {
+            "hex": "#hexcode3",
+            "color": "colorname3"
+        },
+        {
+            "hex": "#hexcode4",
+            "color": "colorname4"
+        },
+        {
+            "hex": "#hexcode5",
+            "color": "colorname5"
+        }
+    ]
+}
+Do not include any other text or explanation, only the JSON.
+"""
     response = model.generate_content(prompt)
     
    
