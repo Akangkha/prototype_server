@@ -51,7 +51,7 @@ This Flask server is a crucial component of the Trend-Centric Recommendation App
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/your-server-repo.git](https://github.com/Akangkha/prototype_server)
+   git clone [https://github.com/Akangkha/prototype_server]
    ```
 3. Create and activate a virtual environment:
    ```bash
